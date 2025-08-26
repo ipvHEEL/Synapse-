@@ -30,3 +30,21 @@ func DeleteTask(c *gin.Context) {
 	database.DB.Delete(&tasks)
 	c.JSON(http.StatusOK, tasks)
 }
+
+func CreateTeam(c *gin.Context) {
+
+	var teams models.Team
+
+	if err := c.ShouldBindBodyWithJSON(&teams); err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	database.DB.Create(&teams)
+	c.JSON(http.StatusOK, teams)
+}
+
+func GetTeams(c *gin.Context) {
+	var teams []models.Team
+	database.DB.Find(&teams)
+	c.JSON(http.StatusOK, teams)
+}

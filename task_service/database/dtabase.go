@@ -23,5 +23,5 @@ func Connect() {
 		log.Fatal("Не удалось подключиться к базе данных:", err)
 	}
 
-	DB.AutoMigrate(&models.Task{})
+	DB.AutoMigrate(&models.Task{}, &models.Team{})
 }
