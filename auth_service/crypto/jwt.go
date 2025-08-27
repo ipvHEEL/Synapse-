@@ -31,7 +31,7 @@ func GenerateJWT(user users.User) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString(jwtKey)
 	if err != nil {
-		return "", err // теперь ошибка будет возвращена
+		return "", err
 	}
 	return tokenString, nil
 }
