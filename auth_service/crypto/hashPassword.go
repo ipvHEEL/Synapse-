@@ -12,3 +12,8 @@ func Crypt(password string) string {
 	return string(hash)
 	// database.DB.Exec("INSERT INTO users(email, password_hash) VALUES (?, ?)", "user@mail.com", hash)
 }
+
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
+}
